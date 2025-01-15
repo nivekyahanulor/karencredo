@@ -124,7 +124,18 @@
 								</script>';
 
 			} else {
-				echo "<h3>&nbsp; Failed to upload image!</h3>";
+				 echo '<script>
+								  $(document).ready(function() {
+										Swal.fire({
+												title: "Failed! ",
+												text: "File Upload Failed",
+												icon: "warning",
+												type: "warning"
+												}).then(function(){
+													window.location = "enrolled-list?import";
+												});
+												});
+								</script>';
 			}
 
 							
