@@ -82,6 +82,7 @@
                                                     <td><?= $val->date_added;?></td>
                                                     <td>
 													<?php  if(isset($_GET['form137'])){ ?>
+													<a href="http://localhost/karen/assets/file/<?= $val->form_137;?>" class="btn btn-success btn-sm" download> Download Form 137 </a>
 													<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
 													<?php } else { ?>
 													<button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#upload<?= $val->id;?>" > Upload Form 137 </button>

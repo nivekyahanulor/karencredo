@@ -83,7 +83,7 @@
 												icon: "success",
 												type: "success"
 												}).then(function(){
-													window.location = "enrolled-list";
+													window.location = "enrolled-list?import";
 												});
 												});
 								</script>';
@@ -109,6 +109,19 @@
 			if (move_uploaded_file($tempname, $folder)) {
 				
 				$mysqli->query("UPDATE cvsu_enrolled_students SET form_137 = '$filename' where id = '$id'");
+				
+				  echo '<script>
+								  $(document).ready(function() {
+										Swal.fire({
+												title: "Success! ",
+												text: "File Uploaded",
+												icon: "success",
+												type: "success"
+												}).then(function(){
+													window.location = "enrolled-list?import";
+												});
+												});
+								</script>';
 
 			} else {
 				echo "<h3>&nbsp; Failed to upload image!</h3>";
