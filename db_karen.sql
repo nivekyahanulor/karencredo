@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2025 at 02:28 AM
+-- Generation Time: Mar 11, 2025 at 07:51 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -62,31 +62,9 @@ CREATE TABLE `cvsu_enrolled_students` (
   `remarks` varchar(36) NOT NULL,
   `status` int(11) NOT NULL,
   `form_137` text NOT NULL,
+  `category` varchar(36) NOT NULL,
   `date_added` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cvsu_enrolled_students`
---
-
-INSERT INTO `cvsu_enrolled_students` (`id`, `name`, `address`, `school`, `school_address`, `control_number`, `program`, `remarks`, `status`, `form_137`, `date_added`) VALUES
-(1, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, 'VA Contract PPC - Kevin.pdf', '2025-01-03 14:43:42'),
-(2, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:43:42'),
-(3, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:43:49'),
-(4, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:43:49'),
-(5, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:44:42'),
-(6, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:44:42'),
-(7, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:44:47'),
-(8, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:44:47'),
-(9, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:45:36'),
-(10, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 1, '', '2025-01-03 14:45:36'),
-(11, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:46:09'),
-(12, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:46:09'),
-(13, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:46:27'),
-(14, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:46:27'),
-(15, 'Student Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Sample', 'Completed', 0, '', '2025-01-03 14:47:13'),
-(16, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:47:13'),
-(18, 'Student Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Incomplete', 0, '', '2025-01-03 14:48:49');
 
 -- --------------------------------------------------------
 
@@ -150,7 +128,7 @@ ALTER TABLE `api_keys`
 -- AUTO_INCREMENT for table `cvsu_enrolled_students`
 --
 ALTER TABLE `cvsu_enrolled_students`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cvsu_system_user`

@@ -44,6 +44,7 @@
 								$control_number = $emapData[4];
 								$program        = $emapData[5];
 								$remarks        = $emapData[6];
+								$category       = $emapData[7];
 								$date_added     = $register_at;
 							
 								
@@ -58,6 +59,7 @@
 									program,
 									remarks,
 									status,
+									category,
 									date_added
 								) 
 								VALUES 
@@ -70,6 +72,7 @@
 									'$program',
 									'$remarks',
 									'$status',
+									'$category',
 									'$date_added'
 								)
 							");
@@ -98,6 +101,112 @@
 				 
 		 }
 		 
+		 if(isset($_POST['process'])){
+		
+				
+
+				$register_at    = date('Y-m-d H:i:s',time());
+
+				$name           =  $_POST['name'];
+				$address        =  $_POST['address'];
+				$school         =  $_POST['school'];
+				$school_address =  $_POST['school_address'];
+				$control_number =  $_POST['control_number'];
+				$program        =  $_POST['program'];
+				$remarks        =  $_POST['remarks'];
+				$date_added     =  $register_at;
+							
+								
+								
+				$mysqli->query("INSERT INTO cvsu_enrolled_students 
+								(
+									name,
+									address,
+									school,
+									school_address,
+									control_number,
+									program,
+									remarks,
+									date_added
+								) 
+								VALUES 
+								(
+									'$name',
+									'$address',
+									'$school',
+									'$school_address',
+									'$control_number',
+									'$program',
+									'$remarks',
+									'$date_added'
+								)
+				");
+							
+					
+				 echo '<script>
+								  $(document).ready(function() {
+										Swal.fire({
+												title: "Success! ",
+												text: "Enrolled Student Data Added",
+												icon: "success",
+												type: "success"
+												}).then(function(){
+													window.location = "enrolled-list?import";
+												});
+												});
+				</script>';
+				
+				 
+		 }
+		 
+		  if(isset($_POST['update'])){
+		
+				
+
+
+				$name           =  $_POST['name'];
+				$address        =  $_POST['address'];
+				$school         =  $_POST['school'];
+				$school_address =  $_POST['school_address'];
+				$control_number =  $_POST['control_number'];
+				$program        =  $_POST['program'];
+				$remarks        =  $_POST['remarks'];
+				$id             =  $_POST['id'];
+							
+								
+								
+				$mysqli->query("UPDATE  cvsu_enrolled_students 
+								SET
+									name           = '$name',
+									address        = '$address',
+									school         = '$school',
+									school_address = '$school_address',
+									control_number = '$control_number',
+									program        = '$program',
+									remarks        = '$remarks'
+								where id           = '$id'
+				");
+							
+					
+				 echo '<script>
+								  $(document).ready(function() {
+										Swal.fire({
+												title: "Success! ",
+												text: "Enrolled Student Data Updated",
+												icon: "success",
+												type: "success"
+												}).then(function(){
+													window.location = "enrolled-list?import";
+												});
+												});
+				</script>';
+				
+				 
+		 }
+		 
+		 
+		 
+		 
 		 if (isset($_POST['upload'])) {
 
 			$filename = $_FILES["file"]["name"];
@@ -109,33 +218,9 @@
 			if (move_uploaded_file($tempname, $folder)) {
 				
 				$mysqli->query("UPDATE cvsu_enrolled_students SET form_137 = '$filename' where id = '$id'");
-				
-				  echo '<script>
-								  $(document).ready(function() {
-										Swal.fire({
-												title: "Success! ",
-												text: "File Uploaded",
-												icon: "success",
-												type: "success"
-												}).then(function(){
-													window.location = "enrolled-list?import";
-												});
-												});
-								</script>';
 
 			} else {
-				 echo '<script>
-								  $(document).ready(function() {
-										Swal.fire({
-												title: "Failed! ",
-												text: "File Upload Failed",
-												icon: "warning",
-												type: "warning"
-												}).then(function(){
-													window.location = "enrolled-list?import";
-												});
-												});
-								</script>';
+				echo "<h3>&nbsp; Failed to upload image!</h3>";
 			}
 
 							
