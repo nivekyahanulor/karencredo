@@ -1,3 +1,3 @@
-Name,Address,School,School Address,Control  No.,Program ,Remarks,Category
-Student Sample,Sample,Sample,Sample,Sample,Sample,Completed,New
-Student Sample2,Sample2,Sample2,Sample2,Sample2,Sample2,Incomplete,Transferee
+First Name,Last Name,Middle Name,Address,School,School Address,Control  No.,Program ,Remarks,Category
+Student,1,a,Sample,Sample,Sample,Sample,Sample,Completed,New
+Student,2,a,Sample2,Sample2,Sample2,Sample2,Sample2,Incomplete,Transferee

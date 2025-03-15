@@ -37,21 +37,25 @@
 
 						
 							
-								$name           =  $emapData[0];
-								$address        =  $emapData[1];
-								$school         =  $emapData[2];
-								$school_address = $emapData[3];
-								$control_number = $emapData[4];
-								$program        = $emapData[5];
-								$remarks        = $emapData[6];
-								$category       = $emapData[7];
+								$fname          =  $emapData[0];
+								$lname          =  $emapData[1];
+								$mname          =  $emapData[2];
+								$address        =  $emapData[3];
+								$school         =  $emapData[4];
+								$school_address = $emapData[5];
+								$control_number = $emapData[6];
+								$program        = $emapData[7];
+								$remarks        = $emapData[8];
+								$category       = $emapData[9];
 								$date_added     = $register_at;
 							
 								
 								
 							$mysqli->query("INSERT INTO cvsu_enrolled_students 
 								(
-									name,
+									fname,
+									lname,
+									mname,
 									address,
 									school,
 									school_address,
@@ -64,7 +68,9 @@
 								) 
 								VALUES 
 								(
-									'$name',
+									'$fname',
+									'$lname',
+									'$mname',
 									'$address',
 									'$school',
 									'$school_address',
@@ -107,37 +113,46 @@
 
 				$register_at    = date('Y-m-d H:i:s',time());
 
-				$name           =  $_POST['name'];
+				$fname          =  $_POST['fname'];
+				$lname          =  $_POST['lname'];
+				$mname          =  $_POST['mname'];
 				$address        =  $_POST['address'];
 				$school         =  $_POST['school'];
 				$school_address =  $_POST['school_address'];
 				$control_number =  $_POST['control_number'];
 				$program        =  $_POST['program'];
 				$remarks        =  $_POST['remarks'];
+				$category       =  $_POST['category'];
 				$date_added     =  $register_at;
 							
 								
 								
 				$mysqli->query("INSERT INTO cvsu_enrolled_students 
 								(
-									name,
+									fname,
+									lname,
+									mname,
 									address,
 									school,
 									school_address,
 									control_number,
 									program,
 									remarks,
+									category,
 									date_added
 								) 
 								VALUES 
 								(
-									'$name',
+									'$fname',
+									'$lname',
+									'$mname',
 									'$address',
 									'$school',
 									'$school_address',
 									'$control_number',
 									'$program',
 									'$remarks',
+									'$category',
 									'$date_added'
 								)
 				");
@@ -164,7 +179,9 @@
 				
 
 
-				$name           =  $_POST['name'];
+				$fname          =  $_POST['fname'];
+				$lname          =  $_POST['lname'];
+				$mname          =  $_POST['mname'];
 				$address        =  $_POST['address'];
 				$school         =  $_POST['school'];
 				$school_address =  $_POST['school_address'];
@@ -177,7 +194,9 @@
 								
 				$mysqli->query("UPDATE  cvsu_enrolled_students 
 								SET
-									name           = '$name',
+									fname          = '$fname',
+									lname          = '$lname',
+									mname          = '$mname',
 									address        = '$address',
 									school         = '$school',
 									school_address = '$school_address',
@@ -217,7 +236,7 @@
 
 			if (move_uploaded_file($tempname, $folder)) {
 				
-				$mysqli->query("UPDATE cvsu_enrolled_students SET form_137 = '$filename' where id = '$id'");
+				$mysqli->query("UPDATE cvsu_enrolled_students SET form_137 = '$filename', remarks = 'Complete' where id = '$id'");
 
 			} else {
 				echo "<h3>&nbsp; Failed to upload image!</h3>";

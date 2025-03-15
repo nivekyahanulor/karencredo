@@ -38,14 +38,17 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                        
 
-                                        <table id="datatable" class="table dt-responsive nowrap w-100">
+                                        <table id="datatable" class="table nowrap w-100">
                                             <thead>
 
                                                 <tr>
                                                     <th>Control No.</th>
-                                                    <th>Name</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Middle Name</th>
                                                     <th>Address</th>
                                                     <th>School</th>
                                                     <th>School Address</th>
@@ -76,7 +79,9 @@
 											?>
                                                 <tr>
                                                     <td><?= $val->control_number;?></td>
-                                                    <td><?= $val->name;?></td>
+                                                    <td><?= $val->fname ;?></td>
+                                                    <td><?= $val->lname ;?></td>
+                                                    <td><?= $val->mname ;?></td>
                                                     <td><?= $val->address;?></td>
                                                     <td><?= $val->school;?></td>
                                                     <td><?= $val->school_address;?></td>
@@ -89,8 +94,8 @@
 													<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#file<?= $val->id;?>"> File </button>
 													<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
 													<?php } else { ?>
-													<button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#upload<?= $val->id;?>" > Upload Form 137 </button>
-													<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#request<?= $val->id;?>"> Print Form 137 Request </button>
+													<button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#upload<?= $val->id;?>" > Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> </button>
+													<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#request<?= $val->id;?>"> Print <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> Request </button>
 													<button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#update<?= $val->id;?>"> Update </button>
 													<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
 													<?php } ?>
@@ -101,13 +106,13 @@
 													<div class="modal-dialog">
 													   <div class="modal-content">
 															<div class="modal-header">
-																<h4 class="modal-title" id="standard-modalLabel">Upload Form 137</h4>
+																<h4 class="modal-title" id="standard-modalLabel">Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> </h4>
 																  <button type="button" class="btn-close" data-bs-dismiss="modal"
 																	aria-label="Close"></button>
 															</div>
 															<div class="modal-body">
 															<form method="POST" enctype="multipart/form-data">
-															<i>(Upload Form-137 PDF Format)</i>
+															<i>(Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?>  PDF Format)</i>
 															   <input type="file"  name="file" class="form-control" accept=".pdf" required> 
 															   <input type="hidden"  name="id" value="<?= $val->id;?>"> 
 															</div>
@@ -159,8 +164,16 @@
 																	<input type="text" name="control_number"  value="<?= $val->control_number;?>" class="form-control" fdprocessedid="zi48qu">
 																</div>
 																<div class="mb-3">
-																	<label for="simpleinput" class="form-label">Name </label>
-																	<input type="text" name="name"  class="form-control"  value="<?= $val->name;?>" fdprocessedid="zi48qu">
+																	<label for="simpleinput" class="form-label">First Name </label>
+																	<input type="text" name="fname"  class="form-control"  value="<?= $val->fname;?>" fdprocessedid="zi48qu">
+																</div>
+																<div class="mb-3">
+																	<label for="simpleinput" class="form-label">Last Name </label>
+																	<input type="text" name="lname"  class="form-control"  value="<?= $val->lname;?>" fdprocessedid="zi48qu">
+																</div>
+																<div class="mb-3">
+																	<label for="simpleinput" class="form-label">Middle Name </label>
+																	<input type="text" name="mname"  class="form-control"  value="<?= $val->mname;?>" fdprocessedid="zi48qu">
 																</div>
 																<div class="mb-3">
 																	<label for="simpleinput" class="form-label">Address </label>
@@ -180,7 +193,13 @@
 																</div>
 																<div class="mb-3">
 																	<label for="simpleinput" class="form-label">Remarks </label>
-																	<input type="text" name="remarks"  value="<?= $val->remarks;?>" class="form-control" fdprocessedid="zi48qu">
+																	
+																	<select type="text" name="remarks" class="form-control" fdprocessedid="zi48qu">
+																			<option value=""> - Select - </option>
+																			<option value="Complete"  <?php if($val->category == 'Complete'){ echo "selected";} else {}?>> Complete </option>
+																			<option value="Incomplete" <?php if($val->category == 'Incomplete'){ echo "selected";} else {}?>> Incomplete </option>
+																	</select>
+																	
 																</div>
 																	<div class="mb-3">
 																		<label for="simpleinput" class="form-label">Category </label>
@@ -194,7 +213,7 @@
 															<div class="modal-footer">
 															<button type="button" class="btn btn-light"
 																 data-bs-dismiss="modal">Close</button>
-															<button type="submit" name="update" class="btn btn-primary">Upload</button>
+															<button type="submit" name="update" class="btn btn-primary">Update</button>
 															 </div>
 															</form>
 														 </div><!-- /.modal-content -->
@@ -358,8 +377,16 @@
                                     <input type="text" name="control_number" class="form-control" fdprocessedid="zi48qu">
                                 </div>
 								<div class="mb-3">
-                                    <label for="simpleinput" class="form-label">Name </label>
-                                    <input type="text" name="name"  class="form-control" fdprocessedid="zi48qu">
+                                    <label for="simpleinput" class="form-label">First Name </label>
+                                    <input type="text" name="fname"  class="form-control" fdprocessedid="zi48qu">
+                                </div>
+									<div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Last Name </label>
+                                    <input type="text" name="lname"  class="form-control" fdprocessedid="zi48qu">
+                                </div>
+									<div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Middle Name </label>
+                                    <input type="text" name="mname"  class="form-control" fdprocessedid="zi48qu">
                                 </div>
 								<div class="mb-3">
                                     <label for="simpleinput" class="form-label">Address </label>
@@ -379,7 +406,11 @@
                                 </div>
 								<div class="mb-3">
                                     <label for="simpleinput" class="form-label">Remarks </label>
-                                    <input type="text" name="remarks" class="form-control" fdprocessedid="zi48qu">
+									  <select type="text" name="remarks" class="form-control" fdprocessedid="zi48qu">
+										<option value=""> - Select - </option>
+										<option value="Complete"> Complete </option>
+										<option value="Incomplete"> Incomplete </option>
+									</select>
                                 </div>
 								<div class="mb-3">
                                     <label for="simpleinput" class="form-label">Category </label>
@@ -393,7 +424,7 @@
                             <div class="modal-footer">
                             <button type="button" class="btn btn-light"
                                  data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="process" class="btn btn-primary">Import</button>
+                            <button type="submit" name="process" class="btn btn-primary">Process</button>
                              </div>
 							</form>
                          </div><!-- /.modal-content -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2025 at 07:51 AM
+-- Generation Time: Mar 15, 2025 at 08:21 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -53,7 +53,9 @@ INSERT INTO `api_keys` (`id`, `user_id`, `my_key`, `level`, `ignore_limits`, `is
 
 CREATE TABLE `cvsu_enrolled_students` (
   `id` int(12) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `mname` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `school` varchar(100) NOT NULL,
   `school_address` varchar(100) NOT NULL,
@@ -65,6 +67,16 @@ CREATE TABLE `cvsu_enrolled_students` (
   `category` varchar(36) NOT NULL,
   `date_added` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cvsu_enrolled_students`
+--
+
+INSERT INTO `cvsu_enrolled_students` (`id`, `fname`, `lname`, `mname`, `address`, `school`, `school_address`, `control_number`, `program`, `remarks`, `status`, `form_137`, `category`, `date_added`) VALUES
+(1, 'Student', '1', 'a', 'Sample', 'Sample', 'Sample', 'Sample1', 'Sample', 'Incomplete', 0, '', 'New', '2025-03-15 15:04:46'),
+(2, 'Student', '2', 'a', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Sample2', 'Complete', 0, 'Datatables  Codefox - Responsive Admin Dashboard Template (3).pdf', 'Transferee', '2025-03-15 15:04:46'),
+(3, '1', '1', '1', '1', '1', '1', '1', '1', 'Incomplete', 0, '', '', '2025-03-15 15:12:53'),
+(4, 'dassa', 'dasd', 'asd', 'asd', 'asd', 'asd', 'sd', 'asd', 'Incomplete', 0, '', 'Transferee', '2025-03-15 15:14:35');
 
 -- --------------------------------------------------------
 
@@ -128,7 +140,7 @@ ALTER TABLE `api_keys`
 -- AUTO_INCREMENT for table `cvsu_enrolled_students`
 --
 ALTER TABLE `cvsu_enrolled_students`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cvsu_system_user`
