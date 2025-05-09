@@ -45,10 +45,10 @@
                                             <thead>
 
                                                 <tr>
-                                                    <th>Control No.</th>
+                                                    <th>Last Name</th>												
                                                     <th>First Name</th>
-                                                    <th>Last Name</th>
                                                     <th>Middle Name</th>
+                                                    <th>Student No.</th>													
                                                     <th>Address</th>
                                                     <th>School</th>
                                                     <th>School Address</th>
@@ -78,10 +78,10 @@
 												 while($val = $is_users->fetch_object()){
 											?>
                                                 <tr>
-                                                    <td><?= $val->control_number;?></td>
+													<td><?= $val->lname ;?></td>
                                                     <td><?= $val->fname ;?></td>
-                                                    <td><?= $val->lname ;?></td>
                                                     <td><?= $val->mname ;?></td>
+                                                    <td><?= $val->control_number;?></td>
                                                     <td><?= $val->address;?></td>
                                                     <td><?= $val->school;?></td>
                                                     <td><?= $val->school_address;?></td>
@@ -94,10 +94,10 @@
 													<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#file<?= $val->id;?>"> File </button>
 													<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
 													<?php } else { ?>
-													<button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#upload<?= $val->id;?>" > Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> </button>
-													<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#request<?= $val->id;?>"> Print <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> Request </button>
-													<button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#update<?= $val->id;?>"> Update </button>
-													<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
+													<button class="btn btn-info btn-sm" style="width:30%" data-bs-toggle="modal" data-bs-target="#upload<?= $val->id;?>" > Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> </button>
+													<button class="btn btn-primary btn-sm" style="width:30%" data-bs-toggle="modal" data-bs-target="#request<?= $val->id;?>"> Print <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> Request </button>
+													<button class="btn btn-success btn-sm" style="width:20%" data-bs-toggle="modal" data-bs-target="#update<?= $val->id;?>"> Update </button>
+													<button class="btn btn-warning btn-sm" style="width:20%" data-bs-toggle="modal" data-bs-target="#delete<?= $val->id;?>"> Delete </button>
 													<?php } ?>
 													</td>
                                                 </tr>
@@ -112,8 +112,8 @@
 															</div>
 															<div class="modal-body">
 															<form method="POST" enctype="multipart/form-data">
-															<i>(Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?>  PDF Format)</i>
-															   <input type="file"  name="file" class="form-control" accept=".pdf" required> 
+															<i>(Upload <?php if($val->category == 'New') { echo "Form 137";} else { echo "TOR";}?> )</i>
+															   <input type="file"  name="file" class="form-control"  required> 
 															   <input type="hidden"  name="id" value="<?= $val->id;?>"> 
 															</div>
 															<div class="modal-footer">
@@ -244,7 +244,7 @@
 												   </div><!-- /.modal-dialog -->
 												</div><!-- /.modal -->
 												
-												 <div id="request<?= $val->id;?>" class="modal fade" tabindex="-1" role="dialog"
+												 <div id="request<?= $val->id;?>" class="modal fade request" tabindex="-1" role="dialog"
 														aria-labelledby="standard-modalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg">
 													   <div class="modal-content">
@@ -371,22 +371,23 @@
                             </div>
                             <div class="modal-body">
 							<form method="POST"  enctype="multipart/form-data">
-							
-                                <div class="mb-3">
-                                    <label for="simpleinput" class="form-label">Control Number</label>
-                                    <input type="text" name="control_number" class="form-control" fdprocessedid="zi48qu">
+								<div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Last Name </label>
+                                    <input type="text" name="lname"  class="form-control" fdprocessedid="zi48qu">
                                 </div>
+                               
 								<div class="mb-3">
                                     <label for="simpleinput" class="form-label">First Name </label>
                                     <input type="text" name="fname"  class="form-control" fdprocessedid="zi48qu">
                                 </div>
-									<div class="mb-3">
-                                    <label for="simpleinput" class="form-label">Last Name </label>
-                                    <input type="text" name="lname"  class="form-control" fdprocessedid="zi48qu">
-                                </div>
+								
 									<div class="mb-3">
                                     <label for="simpleinput" class="form-label">Middle Name </label>
                                     <input type="text" name="mname"  class="form-control" fdprocessedid="zi48qu">
+                                </div>
+								 <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Student Number</label>
+                                    <input type="text" name="control_number" class="form-control" fdprocessedid="zi48qu">
                                 </div>
 								<div class="mb-3">
                                     <label for="simpleinput" class="form-label">Address </label>
@@ -452,32 +453,45 @@
 
 	</script>
 	<script>
-	function printDiv(divId,rid) {
-		
-     var printContents = document.getElementById(divId).innerHTML;
-     var originalContents = document.body.innerHTML;
+	function printDiv(divId, rid) {
+    var printContents = document.getElementById(divId).innerHTML;
+    var originalTitle = document.title;
 
-     document.body.innerHTML = printContents;
-	 
-				$.ajax({
-				   type: "POST",
-				   url:'include/process',
-				   dataType: 'json',
-				   data : {
-					   
-							 'id'        :  rid , 
-							 'request'   : 'request' , 
-							
-						
-					},
-				   success: function(data)
-				   {
-						
-				   }
-			   });	
-	 
-     window.print();
+    // Create a hidden iframe for printing
+    var printFrame = document.createElement('iframe');
+    printFrame.name = 'printFrame';
+    printFrame.style.position = 'absolute';
+    printFrame.style.top = '-10000px';
+    document.body.appendChild(printFrame);
 
-     document.body.innerHTML = originalContents;
-	}
+    var frameDoc = printFrame.contentWindow || printFrame.contentDocument;
+    if (frameDoc.document) frameDoc = frameDoc.document;
+
+    frameDoc.open();
+    frameDoc.write('<html><head><title>' + originalTitle + '</title>');
+    frameDoc.write('</head><body>');
+    frameDoc.write(printContents);
+    frameDoc.write('</body></html>');
+    frameDoc.close();
+
+    frameDoc.defaultView.focus();
+    frameDoc.defaultView.print();
+
+    // Remove iframe after printing
+    frameDoc.defaultView.onafterprint = function () {
+        document.body.removeChild(printFrame);
+    };
+
+    // Optional AJAX
+    $.post('include/process', {
+        id: rid,
+        request: 'request'
+    }, 'json');
+}
+
+	</script>
+	<script>
+	$('.request').on('hidden.bs.modal', function () {
+		location.reload();
+	});
 	</script>
